@@ -2,7 +2,7 @@ import sys
 
 from DiGraph import DiGraph
 from GraphAlgo import GraphAlgo
-#ata shamen
+
 def check():
     """
     Graph: |V|=4 , |E|=5
