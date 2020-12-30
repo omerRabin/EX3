@@ -1,15 +1,14 @@
-import sys
-
 from DiGraph import DiGraph
 from GraphAlgo import GraphAlgo
 
+#check add
 def check():
     """
     Graph: |V|=4 , |E|=5
-    {0: 0: score inf, 1: 1: score inf, 2: 2: score inf, 3: 3: score inf}
+    {0: 0: |edges out| 1 |edges in| 1, 1: 1: |edges out| 3 |edges in| 1, 2: 2: |edges out| 1 |edges in| 1, 3: 3: |edges out| 0 |edges in| 2}
     {0: 1}
     {0: 1.1, 2: 1.3, 3: 10}
-    (11, [0, 1, 3])
+    (3.4, [0, 1, 2, 3])
     [[0, 1], [2], [3]]
     (2.8, [0, 1, 3])
     (inf, None)
@@ -24,9 +23,10 @@ def check():
     check1()
     check2()
 
+
 def check0():
     """
-    This function tests the naming (main methods of the DiGraph.py class, as defined in GraphInterface.
+    This function tests the naming (main methods of the DiGraph class, as defined in GraphInterface.
     :return:
     """
     g = DiGraph()  # creates an empty directed graph
@@ -45,20 +45,23 @@ def check0():
     print(g.all_out_edges_of_node(1))
     g_algo = GraphAlgo(g)
     print(g_algo.shortest_path(0, 3))
+    g_algo.plot_graph()
+
 
 def check1():
     """
        This function tests the naming (main methods of the GraphAlgo class, as defined in GraphAlgoInterface.
     :return:
     """
-    g_algo = GraphAlgo()        # init an empty graph - for the GraphAlgo
+    g_algo = GraphAlgo()  # init an empty graph - for the GraphAlgo
     file = "../data/T0.json"
-    g_algo.load_from_json(file) # init a GraphAlgo from a json file
+    g_algo.load_from_json(file)  # init a GraphAlgo from a json file
     print(g_algo.connected_components())
     print(g_algo.shortest_path(0, 3))
     print(g_algo.shortest_path(3, 1))
-    g_algo.save_to_json(file+'_saved')
+    g_algo.save_to_json(file + '_saved')
     g_algo.plot_graph()
+
 
 def check2():
     """ This function tests the naming, basic testing over A5 json file.
@@ -80,6 +83,7 @@ def check2():
     print(g_algo.connected_component(0))
     print(g_algo.connected_components())
     g_algo.plot_graph()
+
 
 if __name__ == '__main__':
     check()
