@@ -10,16 +10,17 @@ class DiGraph:
 
 
     def v_size(self):
-
+        return self.sizeNodes
     def e_size(self):
-
+        return self.sizeEdges
     def get_all_v(self):
-
+        return self.graph
     def all_in_edges_of_node(self, id1: int):
 
     def all_out_edges_of_node(self, id1: int):
 
     def get_mc(self):
+        return self.mc
 
     def add_edge(self, id1: int, id2: int, weight: float):
 
