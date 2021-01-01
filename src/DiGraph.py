@@ -1,5 +1,13 @@
 from src import GraphInterface
+from src import Node
 class DiGraph:
+    def __init__(self, graph: dict[Node], mc: int, sizeNodes: int, sizeEdges: int):
+        self.graph=graph
+        self.mc=mc
+        self.size=size
+        self.sizeNodes=sizeNodes
+        self.sizeEdges=sizeEdges
+
 
     def v_size(self):
 
