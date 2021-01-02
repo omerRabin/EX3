@@ -1,7 +1,9 @@
+def DiGraph(GraphInteface):
+    return None
 from src import GraphInterface
 from src import Node
 class DiGraph:
-    def __init__(self, graph: dict[Node], mc: int, sizeNodes: int, sizeEdges: int):
+    def __init__(self, graph: dict[Node], mc: int, sizeNodes: int, sizeEdges: int, size: int):
         self.graph=graph
         self.mc=mc
         self.size=size
@@ -25,6 +27,11 @@ class DiGraph:
     def add_edge(self, id1: int, id2: int, weight: float):
 
     def add_node(self, node_id: int, pos: tuple = None):
+
+    def get_node(self, node_id: int):
+        if node_id in self.graph:
+            return self.graph.get(node_id)
+        return False
 
     def remove_node(self, node_id: int):
 
