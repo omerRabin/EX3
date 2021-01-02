@@ -31,7 +31,7 @@ class DiGraph:
     def get_node(self, node_id: int):
         if node_id in self.graph:
             return self.graph.get(node_id)
-        return False
+        pass
 
     def remove_node(self, node_id: int):
 
