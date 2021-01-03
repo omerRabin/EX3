@@ -1,7 +1,7 @@
-from src import GraphInterface
-from src import Node
+from GraphInterface import GraphInterface
+from Node import Node
 class DiGraph:
-    def __init__(self, graph: dict[Node], mc: int, sizeNodes: int, sizeEdges: int):
+    def __init__(self, graph: dict[int, Node], mc: int, sizeNodes: int, sizeEdges: int):
         self.graph=graph
         self.mc=mc
         self.sizeNodes=sizeNodes
@@ -18,10 +18,24 @@ class DiGraph:
         return self.graph
 
     def all_in_edges_of_node(self, id1: int):
-        n= self.get_node(self,id1)
-
+        dictIn={}
+        it=iter(self.graph.values())
+        for i in it:
+            current=next(it)
+            if current.getNi().get(id1) is not None:
+                item={current.node_id,current.getWeight(id1)}
+                dictIn.update(item)
+            return dictIn
 
     def all_out_edges_of_node(self, id1: int):
+        dictIn = {}
+        n=self.get_node(id1)
+        edges=n.getEdges().values()
+        it = iter(edges)
+        for i in it:
+            current = next(it)
+            item={current.des,current.w}
+            dictIn.update(item)
 
     def get_mc(self):
         return self.mc
