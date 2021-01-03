@@ -28,14 +28,15 @@ class DiGraph:
             return dictIn
 
     def all_out_edges_of_node(self, id1: int):
-        dictIn = {}
+        dictOut = {}
         n=self.get_node(id1)
         edges=n.getEdges().values()
         it = iter(edges)
         for i in it:
             current = next(it)
             item={current.des,current.w}
-            dictIn.update(item)
+            dictOut.update(item)
+            return dictOut
 
     def get_mc(self):
         return self.mc
