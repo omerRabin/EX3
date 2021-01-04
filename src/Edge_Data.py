@@ -1,4 +1,3 @@
-from numpy.core import double
 
 
 class Edge_Data:
