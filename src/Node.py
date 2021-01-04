@@ -1,10 +1,9 @@
-from numpy.core import double
 from Edge_Data import Edge_Data
 
 
 class Node:
 
-    def __init__(self, node_id: int, pos: tuple[double, double, double], info: str, tag: double,
+    def __init__(self, node_id: int, pos: tuple[float, float, float], info: str, tag: float,
                  edges: dict[int, Edge_Data]):
         self.pos = pos
         self.node_id = node_id
