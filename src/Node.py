@@ -13,7 +13,9 @@ class Node:
         self.edges = edges
 
     def getEdges(self):
+        # return the dict-Edges of self Node
         return self.edges
 
     def getWeight(self, id2):
+        # return the weight between self to node2
         return self.edges.get(id2).w
