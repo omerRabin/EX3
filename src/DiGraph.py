@@ -5,7 +5,12 @@ from Edge_Data import Edge_Data
 
 class DiGraph(GraphInterface):
     # class represent a directed weighted Graph
-    def __init__(self, graph: dict[int, Node], mc: int, sizeNodes: int, sizeEdges: int, Ni: dict[int, dict[int, Node]]):
+    def __init__(self, graph: dict[int, Node] = None, mc: int = 0, sizeNodes: int = 0, sizeEdges: int = 0,
+                 Ni: dict[int, dict[int, Node]] = None):
+        if Ni is None:
+            Ni = {}
+        if graph is None:
+            graph = {}
         self.Ni = Ni  # neighbors dictionary of each node in the Graph
         self.graph = graph  # graph dictionary
         self.mc = mc  # count changes on Graph
@@ -29,6 +34,8 @@ class DiGraph(GraphInterface):
         it = iter(self.graph.values())  # define iterator on the Graph
         for i in it:
             current = next(it)
+            if self.getNi(current.node_id) is None:
+                continue
             if self.getNi(current.node_id).get(id1) is not None:  # check if the node with the key in the parameter is
                 # neighbor of the current node in the loop
                 item = {current.node_id: current.getWeight(id1)}
@@ -55,15 +62,18 @@ class DiGraph(GraphInterface):
         n2 = self.get_node(id2)
         n1 = self.get_node(id1)
         e = Edge_Data(id1, id2, weight, "", 0)  # create the new edge as object
-        if n2 is not None and n1 is not None:  # if n2 or n1 is None do nothing
-            if self.getNi(id1).get(id2) is None:  # check if node 2 is already neighbor of node1
-                item = {n2.node_id: e}
-                n1.edges.update(item)
-                self.getNi(id1).update({n2.node_id: n2})
-                self.mc += 1
-                self.sizeEdges += 1
-                return True
-        return False
+        if n1 is None or n2 is None:  # if n2 or n1 is None do nothing
+            return False
+        if self.getNi(id1) is not None:
+            if id2 in self.getNi(id1).keys():  # if node 2 is already neighbor of node1
+                return False
+        item = {n2.node_id: e}
+        n1.edges.update(item)
+        item2 = {n2.node_id: n2}
+        self.getNi(id1).update(item2)
+        self.mc += 1
+        self.sizeEdges += 1
+        return True
 
     def get_node(self, node_id: int):
         #  this method return the node with the key in the parameter
@@ -100,10 +110,12 @@ class DiGraph(GraphInterface):
         n2 = self.get_node(node_id2)
         if n1 is None or n2 is None:
             return False
+        if self.getNi(node_id1) is None:
+            return False
         if self.getNi(node_id1).get(node_id2) is None:  # if n2 is not neighbor of n1  do nothing
             return False
         self.getNi(node_id1).pop(node_id2)  # remove n2 from neighbors dict of n1
-        n1.edges.pop(node_id2) # remove the edge from neighbors dict of n1
+        n1.edges.pop(node_id2)  # remove the edge from neighbors dict of n1
         self.mc += 1
         self.sizeEdges += -1
         return True
