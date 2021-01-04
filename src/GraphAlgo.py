@@ -1,8 +1,7 @@
 import json
-
-from src import GraphAlgoInterface
+from GraphAlgoInterface import GraphAlgoInterface
 #from networkx.readwrite import json_graph
-class GraphAlgo:
+class GraphAlgo(GraphAlgoInterface):
     def get_graph(self):
 
     def load_from_json(self, file_name: str):
