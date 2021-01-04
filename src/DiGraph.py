@@ -5,7 +5,7 @@ from Edge_Data import Edge_Data
 
 class DiGraph(GraphInterface):
     # class represent a directed weighted Graph
-    def __init__(self, graph: dict[int, Node], mc: int, sizeNodes: int, sizeEdges: int, Ni: dict[int,dict[int,Node]]):
+    def __init__(self, graph: dict[int, Node], mc: int, sizeNodes: int, sizeEdges: int, Ni: dict[int, dict[int, Node]]):
         self.Ni = Ni  # neighbors dictionary of each node in the Graph
         self.graph = graph  # graph dictionary
         self.mc = mc  # count changes on Graph
