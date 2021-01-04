@@ -1,7 +1,10 @@
 import json
 from GraphAlgoInterface import GraphAlgoInterface
-#from networkx.readwrite import json_graph
+
+
+# from networkx.readwrite import json_graph
 class GraphAlgo(GraphAlgoInterface):
+    """
     def get_graph(self):
 
     def load_from_json(self, file_name: str):
@@ -20,3 +23,4 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_components(self):
 
     def plot_graph(self):
+    """
