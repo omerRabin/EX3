@@ -32,7 +32,7 @@ class DiGraph(GraphInterface):
     def all_in_edges_of_node(self, id1: int):
         dictIn = {}  # an empty dictionary of all in edges
         it = iter(self.graph.values())  # define iterator on the Graph
-        for i in it:
+        for i in self.graph:
             current = next(it)
             if self.getNi(current.node_id) is None:
                 continue
@@ -47,7 +47,7 @@ class DiGraph(GraphInterface):
         n = self.get_node(id1)  # get the node object
         edges = n.getEdges().values()  # get all values of Edges dict
         it = iter(edges)
-        for i in it:
+        for i in edges:
             current = next(it)
             item = {current.des: current.w}  # create a pair of key and weight
             dictOut.update(item)
@@ -70,7 +70,7 @@ class DiGraph(GraphInterface):
         item = {n2.node_id: e}
         n1.edges.update(item)
         item2 = {n2.node_id: n2}
-        self.getNi(id1).update(item2)
+        self.Ni.get(id1).update(item2)
         self.mc += 1
         self.sizeEdges += 1
         return True
@@ -85,6 +85,7 @@ class DiGraph(GraphInterface):
         n = Node(node_id, pos, "", 0, {})
         if node_id not in self.graph:  # add only if n is not exist in the graph
             self.graph.update({node_id: n})
+            self.Ni.update({node_id: {}})
             self.mc += 1
             self.sizeNodes += 1
             return True
@@ -94,7 +95,7 @@ class DiGraph(GraphInterface):
         if node_id not in self.graph:  # if the node is not exist doesnt remove
             return False
         it = iter(self.graph.values())
-        for i in it:
+        for i in self.graph:
             current = next(it)
             if self.getNi(current.node_id).get(node_id) is not None:  # check if the removal node is neighbor of current
                 self.getNi(current.node_id).pop(node_id)  # remove the removal node from the neighbor dict of current
