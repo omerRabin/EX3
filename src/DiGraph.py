@@ -40,7 +40,7 @@ class DiGraph(GraphInterface):
                 # neighbor of the current node in the loop
                 item = {current.node_id: current.getWeight(id1)}
                 dictIn.update(item)  # adding the pair of key and weight to dictIn
-            return dictIn
+        return dictIn
 
     def all_out_edges_of_node(self, id1: int):
         dictOut = {}  # an empty dictionary of all out edges
@@ -51,7 +51,7 @@ class DiGraph(GraphInterface):
             current = next(it)
             item = {current.des: current.w}  # create a pair of key and weight
             dictOut.update(item)
-            return dictOut
+        return dictOut
 
     def get_mc(self):
         return self.mc
