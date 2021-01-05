@@ -59,6 +59,8 @@ class DiGraph(GraphInterface):
     def add_edge(self, id1: int, id2: int, weight: float):
         if weight <= 0:  # if the weight is negative doesnt add
             return False
+        if id1 == id2:
+            return False
         n2 = self.get_node(id2)
         n1 = self.get_node(id1)
         e = Edge_Data(id1, id2, weight, "", 0)  # create the new edge as object
