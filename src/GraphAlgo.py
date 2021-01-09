@@ -55,8 +55,10 @@ class GraphAlgo(GraphAlgoInterface):
                 if newpath: return newpath
         return None
 
+    """
     def connected_component(self, id1: int):
 
     def connected_components(self):
 
     def plot_graph(self):
+    """
