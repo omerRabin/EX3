@@ -1,16 +1,21 @@
 import json
+from typing import List
+
+from DiGraph_Encoder import DiGraph_Encoder
 from GraphAlgoInterface import GraphAlgoInterface
-from src.DiGraph import DiGraph
-import math
+from DiGraph import DiGraph
 import random
 import matplotlib.pyplot as plt
-
+from GraphInterface import GraphInterface
 
 
 class GraphAlgo(GraphAlgoInterface):
 
-    def get_graph(self):
-        return self.graph
+    def __init__(self, graph=DiGraph()):
+        self.graph = graph
+
+    def get_graph(self) -> dict:
+        return self.graph.get_all_v()
 
     def load_from_json(self, file_name: str):
         try:
@@ -28,21 +33,21 @@ class GraphAlgo(GraphAlgoInterface):
                 g.add_edge(edge["src"], edge["dest"], edge["w"])
             self.graph = g
             return True
+
         except Exception as e:
             print(e)
             return False
 
-
-
     def save_to_json(self, file_name: str):
-        """
+
         try:
             with open(file_name, 'w') as f:
-                json.dump(self.graph, f, cls=DiGraphEncoder)#need to add
+                json.dump(self.graph, f, cls=DiGraph_Encoder)
                 return True
-        except:
+
+        except Exception as e:
+            print(e)
             return False
-        """
 
     def shortest_path(self, id1: int, id2: int):
         path = []
@@ -56,9 +61,10 @@ class GraphAlgo(GraphAlgoInterface):
                 newpath = self.shortest_path(self, node, id2)
                 if newpath: return newpath
         return None
-    """
+
+    """""
      def shortest_path(self, id1: int, id2: int) -> (float, list):
-         if id1 not in self.graph.get_all_v() or id2 not in self.graph.get_all_v():
+         if id1 not in self.get_graph() or id2 not in self.get_graph():
              return (math.inf,[])
          if id1 is id2:
              return (0, [id1]) # bdika
@@ -96,6 +102,10 @@ class GraphAlgo(GraphAlgoInterface):
 
     def connected_components(self):
     """
+    """
+    def connected_component(self, id1: int) -> list:
+
+    def connected_components(self) -> List[list]:
 
     def plot_graph(self):
         all_nodes = self.graph.get_all_v()
@@ -130,3 +140,4 @@ class GraphAlgo(GraphAlgoInterface):
         plt.xlabel("X axis")
         plt.ylabel("Y axis")
         plt.show()
+    """
