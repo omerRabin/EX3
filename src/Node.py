@@ -3,8 +3,10 @@ from Edge_Data import Edge_Data
 
 class Node:
 
-    def __init__(self, node_id: int, pos: tuple[float, float, float], info: str, tag: float,
-                 edges: dict[int, Edge_Data]):
+    def __init__(self, node_id: int, pos: tuple[float, float, float] = None, info: str = None, tag: float = 0,
+                 edges: dict[int, Edge_Data] = None):
+        if edges is None:
+            edges = {}
         self.pos = pos
         self.node_id = node_id
         self.info = info
@@ -18,3 +20,9 @@ class Node:
     def getWeight(self, id2):
         # return the weight between self to node2
         return self.edges.get(id2).w
+
+    def getPos(self):
+        return self.pos
+
+    def getNode_id(self):
+        return self.node_id
