@@ -123,3 +123,7 @@ class DiGraph(GraphInterface):
         self.mc += 1
         self.sizeEdges += -1
         return True
+
+    # equal between graphs
+    def __eq__(self, other):
+        return self.sizeNodes == other.sizeNodes and self.sizeEdges == other.sizeEdges
