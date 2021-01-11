@@ -19,6 +19,16 @@ class TestGraphAlgo(unittest.TestCase):
         ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/G_10_80_1.json");
         self.assertEqual(ga.save_to_json("save_test.json"), True)
 
+    def test_shortest_path(self):
+        g_algo = GraphAlgo()
+        g_algo.graph.add_node(0)
+        g_algo.graph.add_node(1)
+        g_algo.graph.add_node(2)
+        g_algo.graph.add_node(0, [1, 1, 0])
+        g_algo.graph.add_node(1, [2, 4, 0])
+        self.assertEqual(g_algo.shortest_path(0, 1), (1, [0, 1]))
+        self.assertEqual(g_algo.shortest_path(0, 2), (5, [0, 1, 2]))
+
 
 if __name__ == '__main__':
     unittest.main()
