@@ -14,8 +14,8 @@ class GraphAlgo(GraphAlgoInterface):
     def __init__(self, graph=DiGraph()):
         self.graph = graph
 
-    def get_graph(self) -> dict:
-        return self.graph.get_all_v()
+    def get_graph(self) -> DiGraph:
+        return self.graph
 
     def load_from_json(self, file_name: str):
         try:
@@ -49,20 +49,8 @@ class GraphAlgo(GraphAlgoInterface):
             print(e)
             return False
 
-    def shortest_path(self, id1: int, id2: int):
-        path = []
-        path = path + [id1]
-        if id1 == id2:
-            return path
-        if not self.has_key(id1):
-            return None
-        for node in self[id1]:
-            if node not in path:
-                newpath = self.shortest_path(self, node, id2)
-                if newpath: return newpath
-        return None
-
     """""
+
      def shortest_path(self, id1: int, id2: int) -> (float, list):
          if id1 not in self.get_graph() or id2 not in self.get_graph():
              return (math.inf,[])
@@ -106,8 +94,16 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_component(self, id1: int) -> list:
 
     def connected_components(self) -> List[list]:
+    """
+
+    def updatePositions(self):
+        g = self.get_graph().graph
+        for i in g:
+            if g.get(i).pos is None:
+                g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
 
     def plot_graph(self):
+        self.updatePositions()
         all_nodes = self.graph.get_all_v()
         x = []
         y = []
@@ -140,4 +136,3 @@ class GraphAlgo(GraphAlgoInterface):
         plt.xlabel("X axis")
         plt.ylabel("Y axis")
         plt.show()
-    """
