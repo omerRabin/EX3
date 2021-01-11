@@ -22,14 +22,14 @@ class GraphAlgo(GraphAlgoInterface):
             with open(file_name, 'r') as f:
                 s = json.load(f)
             g = DiGraph()
-            for node in s["Nodes"]:
+            for node in s["Nodes"]:  # convert json to Nodes
                 if "pos" in node:
                     pos = tuple(map(float, str(node["pos"]).split(",")))
-                    g.add_node(node['id'], pos)
+                    g.add_node(node['id'], pos)  # insert the nodes with pos
                 else:
-                    g.add_node(node['id'])
+                    g.add_node(node['id'])  # insert the nodes without pos
 
-            for edge in s["Edges"]:
+            for edge in s["Edges"]:  # convert json to Edges
                 g.add_edge(edge["src"], edge["dest"], edge["w"])
             self.graph = g
             return True
@@ -42,7 +42,7 @@ class GraphAlgo(GraphAlgoInterface):
 
         try:
             with open(file_name, 'w') as f:
-                json.dump(self.graph, f, cls=DiGraph_Encoder)
+                json.dump(self.graph, f, cls=DiGraph_Encoder)  # convert the graph to json by the class encoder
                 return True
 
         except Exception as e:
