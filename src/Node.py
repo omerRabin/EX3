@@ -4,7 +4,8 @@ from Edge_Data import Edge_Data
 class Node:
 
     def __init__(self, node_id: int, pos: tuple[float, float, float] = None, info: str = None, tag: float = 0,
-                 edges: dict[int, Edge_Data] = None):
+                 edges: dict[int, Edge_Data] = None, parent: int = -1):
+        self.parent = parent
         if edges is None:
             edges = {}
         self.pos = pos
