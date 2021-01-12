@@ -63,6 +63,19 @@ class TestGraphAlgo(unittest.TestCase):
         result2 = ga.graph.get_node(1) in l2 and ga.graph.get_node(2) in l2 and ga.graph.get_node(4) in l2
         self.assertEqual(result2, True)
 
+    def test_connected_component(self):
+        ga = init()
+        for i in range(6):
+            ga.graph.add_node(i)
+        ga.graph.add_edge(1, 2, 4.2)
+        ga.graph.add_edge(2, 4, 5.2)
+        ga.graph.add_edge(2, 3, 0.9)
+        ga.graph.add_edge(3, 5, 9)
+        ga.graph.add_edge(4, 1, 0.8)
+        l = ga.connected_component(2)
+        result = ga.graph.get_node(1) in l and ga.graph.get_node(2) in l and ga.graph.get_node(4) in l
+        self.assertEqual(result, True)
+
     def test_plot_graph(self):
         ga = init()
         ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/A5")
