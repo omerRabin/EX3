@@ -159,20 +159,20 @@ class GraphAlgo(GraphAlgoInterface):
         if id1 is id2:
             return 0, [id1]
         self.init_nodes()
-        q = PriorityQueue()
         node = self.graph.get_all_v()[id1]
         node.tag = 0
-        q.put((node.tag, node))
+        queue = PriorityQueue()
+        queue.put((node.tag, node))
 
-        while not q.empty():
-            v = q.get()[1]
+        while not queue.empty():
+            v = queue.get()[1]
             for edge in self.graph.all_out_edges_of_node(v.node_id):
                 u = self.graph.get_all_v()[edge]  # dest of the edge
                 dist = self.graph.all_out_edges_of_node(v.node_id).get(edge) + v.tag
                 if dist < u.tag:
                     u.tag = dist
                     u.parent = v.node_id  # save the parent
-                    q.put((u.tag, u))  # inserting by tag comparator
+                    queue.put((u.tag, u))  # inserting by tag comparator
         path = []
         dest = self.graph.get_all_v()[id2]
         if dest.tag is math.inf:  # the case there is no path from src to dest
