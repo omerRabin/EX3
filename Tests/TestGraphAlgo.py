@@ -30,7 +30,7 @@ class TestGraphAlgo(unittest.TestCase):
         ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/G_10_80_1.json")
         self.assertEqual(ga.save_to_json("save_test.json"), True)
 
-    def test_shortest_path(self):  # a basic check- not enough complicated
+    def test_shortest_path(self):  # change code and more tests
         g_algo = GraphAlgo()
         g_algo.graph.add_node(0)
         g_algo.graph.add_node(1)
@@ -75,6 +75,18 @@ class TestGraphAlgo(unittest.TestCase):
         l = ga.connected_component(2)
         result = ga.graph.get_node(1) in l and ga.graph.get_node(2) in l and ga.graph.get_node(4) in l
         self.assertEqual(result, True)
+
+    def test_connected_components(self):  # not work- fix and then do test
+        ga = init()
+        for i in range(6):
+            ga.graph.add_node(i)
+        ga.graph.add_edge(1, 2, 4.2)
+        ga.graph.add_edge(2, 4, 5.2)
+        ga.graph.add_edge(2, 3, 0.9)
+        ga.graph.add_edge(3, 5, 9)
+        ga.graph.add_edge(4, 1, 0.8)
+        lists = ga.connected_components()
+        a = 5
 
     def test_plot_graph(self):
         ga = init()
