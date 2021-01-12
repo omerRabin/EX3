@@ -185,45 +185,44 @@ class GraphAlgo(GraphAlgoInterface):
             par = node.parent
         return dest.tag, path
 
+    def updatePositions(self):
+        g = self.get_graph().graph
+        for i in g:
+            if g.get(i).pos is None:
+                g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
 
-def updatePositions(self):
-    g = self.get_graph().graph
-    for i in g:
-        if g.get(i).pos is None:
-            g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
 
-
-def plot_graph(self):
-    self.updatePositions()
-    all_nodes = self.graph.get_all_v()
-    x = []
-    y = []
-    for i in all_nodes.values():
-        if i.getPos():
-            x.append(i.getPos()[0])
-            y.append(i.getPos()[1])
-        else:
-            x_random = random.uniform(35.18, 35.2)
-            y_random = random.uniform(32.1, 32.2)
-            i.setPos((x_random, y_random, 0.0))
-            x.append(x_random)
-            y.append(y_random)
-    n = [j for j in all_nodes.keys()]
-    fig, ax = plt.subplots()
-    ax.scatter(x, y)
-    for p, txt in enumerate(n):
-        ax.annotate(n[p], (x[p], y[p]))
-    plt.plot(x, y, "black")
-    for i in all_nodes.keys():
-        for j in self.graph.all_out_edges_of_node(i):
-            x1_coordinate = all_nodes.get(i).getPos()[0]
-            y1_coordinate = all_nodes.get(i).getPos()[1]
-            x2_coordinate = all_nodes.get(j).getPos()[0]
-            y2_coordinate = all_nodes.get(j).getPos()[1]
-            plt.arrow(x1_coordinate, y1_coordinate, (x2_coordinate - x1_coordinate),
-                      (y2_coordinate - y1_coordinate), length_includes_head=True, width=0.000010,
-                      head_width=0.00006, color='black')
-    plt.title("Ex3")
-    plt.xlabel("X axis")
-    plt.ylabel("Y axis")
-    plt.show()
+    def plot_graph(self):
+        self.updatePositions()
+        all_nodes = self.graph.get_all_v()
+        x = []
+        y = []
+        for i in all_nodes.values():
+            if i.getPos():
+                x.append(i.getPos()[0])
+                y.append(i.getPos()[1])
+            else:
+                x_random = random.uniform(35.18, 35.2)
+                y_random = random.uniform(32.1, 32.2)
+                i.setPos((x_random, y_random, 0.0))
+                x.append(x_random)
+                y.append(y_random)
+        n = [j for j in all_nodes.keys()]
+        fig, ax = plt.subplots()
+        ax.scatter(x, y)
+        for p, txt in enumerate(n):
+            ax.annotate(n[p], (x[p], y[p]))
+        plt.plot(x, y, "black")
+        for i in all_nodes.keys():
+            for j in self.graph.all_out_edges_of_node(i):
+                x1_coordinate = all_nodes.get(i).getPos()[0]
+                y1_coordinate = all_nodes.get(i).getPos()[1]
+                x2_coordinate = all_nodes.get(j).getPos()[0]
+                y2_coordinate = all_nodes.get(j).getPos()[1]
+                plt.arrow(x1_coordinate, y1_coordinate, (x2_coordinate - x1_coordinate),
+                          (y2_coordinate - y1_coordinate), length_includes_head=True, width=0.000010,
+                          head_width=0.00006, color='black')
+        plt.title("Ex3")
+        plt.xlabel("X axis")
+        plt.ylabel("Y axis")
+        plt.show()
