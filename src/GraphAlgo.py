@@ -57,11 +57,13 @@ class GraphAlgo(GraphAlgoInterface):
         """
         srcNode = g.get_node(id1)
         visited = [srcNode]
+        srcNode.info = "visited"
         stack = [srcNode]  # temp list of nodes
         while stack:
             node = stack[-1]  # the last node in the stack
             if node not in visited:
                 visited.append(node)
+                node.info = " visited"
             remove_from_stack = True
             if g.getNi(node.node_id) is not None:
                 for n in g.getNi(node.node_id).keys():
@@ -95,17 +97,12 @@ class GraphAlgo(GraphAlgoInterface):
         for i in g:
             g.get(i).tag = math.inf  # initialize tag to infinity for shortest path
             g.get(i).info = ""  # initialize to "" for dfs
-
-    def init_all(self):
-        for node in self.graph.get_all_v().values():
-            node.weight = math.inf
-            node.tag = 0
-            node.info = ""
+            g.get(i).parent = -1
 
     def connected_component(self, id1: int):
         """""
-        this method return the strongly connected component(SCC) that node id1 is a part of using tarjan algorithm
-        we got help from: https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/
+        this method return the strongly connected component(SCC) that node id1 is a part of using dfs algorithm
+
         """""
         path = []  # the list contains the SCC of the node
         if self.graph is None or id1 not in self.graph.get_all_v().keys():  # the case the graph is none or the node not
@@ -138,79 +135,89 @@ class GraphAlgo(GraphAlgoInterface):
         return path
 
     def connected_components(self):
+        if self.graph is None:
+            return [[]]
+        paths = []
+        for node in self.graph.graph.values():
+            if node.info is "visited":
+                paths.append(self.connected_component(node.node_id))
+        return paths
+
+    def shortest_path(self, id1: int, id2: int) -> (float, list):
+        if id1 not in self.graph.graph or id2 not in self.graph.graph:
+            return math.inf, []
+        if id1 is id2:
+            return 0, [id1]
+        self.init_nodes()
+        q = PriorityQueue()
+        node = self.graph.get_all_v()[id1]
+        node.tag = 0
+        q.put((node.tag, node))
+
+        while not q.empty():
+            v = q.get()[1]
+            for edge in self.graph.all_out_edges_of_node(v.node_id):
+                u = self.graph.get_all_v()[edge]  # dest of the edge
+                dist = self.graph.all_out_edges_of_node(v.node_id).get(edge) + v.tag
+                if dist < u.tag:
+                    u.tag = dist
+                    u.parent = v.node_id  # save the parent
+                    q.put((u.tag, u))  # inserting by tag comparator
+        path = []
+        dest = self.graph.get_all_v()[id2]
+        if dest.tag is math.inf:  # the case there is no path from src to dest
+            return math.inf, []
+        path.append(dest.node_id)
+        par = dest.parent
+        while par != -1:
+            node = self.graph.get_all_v()[par]
+            path.insert(0, node.node_id)  # insert to the end from dest(reverse)
+            par = node.parent
+        return dest.tag, path
+
+
+def updatePositions(self):
+    g = self.get_graph().graph
+    for i in g:
+        if g.get(i).pos is None:
+            g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
+
+
+def plot_graph(self):
+    self.updatePositions()
+    all_nodes = self.graph.get_all_v()
+    x = []
+    y = []
+    for i in all_nodes.values():
+        if i.getPos():
+            x.append(i.getPos()[0])
+            y.append(i.getPos()[1])
+        else:
+            x_random = random.uniform(35.18, 35.2)
+            y_random = random.uniform(32.1, 32.2)
+            i.setPos((x_random, y_random, 0.0))
+            x.append(x_random)
+            y.append(y_random)
+    n = [j for j in all_nodes.keys()]
+    fig, ax = plt.subplots()
+    ax.scatter(x, y)
+    for p, txt in enumerate(n):
+        ax.annotate(n[p], (x[p], y[p]))
+    plt.plot(x, y, "black")
+    for i in all_nodes.keys():
+        for j in self.graph.all_out_edges_of_node(i):
+            x1_coordinate = all_nodes.get(i).getPos()[0]
+            y1_coordinate = all_nodes.get(i).getPos()[1]
+            x2_coordinate = all_nodes.get(j).getPos()[0]
+            y2_coordinate = all_nodes.get(j).getPos()[1]
+            plt.arrow(x1_coordinate, y1_coordinate, (x2_coordinate - x1_coordinate),
+                      (y2_coordinate - y1_coordinate), length_includes_head=True, width=0.000010,
+                      head_width=0.00006, color='black')
+    plt.title("Ex3")
+    plt.xlabel("X axis")
+    plt.ylabel("Y axis")
+    plt.show()
 
 
 
-     def shortest_path(self, id1: int, id2: int) -> (float, list):
-         if id1 not in self.get_graph() or id2 not in self.get_graph():
-             return (math.inf,[])
-         if id1 is id2:
-             return (0, [id1])
-         self.init_all()
-         q = PriorityQueue()
-         node = self.graph.get_all_v()[id1]
-         node.weight = 0
-         q.put((node.weight, node))
 
-         while not q.empty():
-             v=q.get()[1]
-             for edge in self.graph.all_out_edges_of_node(v.getId()).values():
-                 u= self.graph.get_all_v()[edge.getDest()]
-                 dist = edge.getW()+v.weight
-                 if dist < u.weight:
-                     u.weight=dist
-                     u.info=v.getId()
-                     q.put((u.weight,u))
-         path = []
-         dest = self.graph.get_all_v()[id2]
-         if dest.weight is math.inf:
-             return  (math.inf,[])
-         path.append(dest.getId())
-         str = dest.info
-         while str != "":
-             node = self.graph.get_all_v()[str]
-             path.insert(0, node.getId())
-             str = node.info
-         return dest.weight,path
-
-
-    def updatePositions(self):
-        g = self.get_graph().graph
-        for i in g:
-            if g.get(i).pos is None:
-                g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
-
-    def plot_graph(self):
-        self.updatePositions()
-        all_nodes = self.graph.get_all_v()
-        x = []
-        y = []
-        for i in all_nodes.values():
-            if i.getPos():
-                x.append(i.getPos()[0])
-                y.append(i.getPos()[1])
-            else:
-                x_random = random.uniform(35.18, 35.2)
-                y_random = random.uniform(32.1, 32.2)
-                i.setPos((x_random, y_random, 0.0))
-                x.append(x_random)
-                y.append(y_random)
-        n = [j for j in all_nodes.keys()]
-        fig, ax = plt.subplots()
-        ax.scatter(x, y)
-        for p, txt in enumerate(n):
-            ax.annotate(n[p], (x[p], y[p]))
-        plt.plot(x, y, "black")
-        for i in all_nodes.keys():
-            for j in self.graph.all_out_edges_of_node(i):
-                x1_coordinate = all_nodes.get(i).getPos()[0]
-                y1_coordinate = all_nodes.get(i).getPos()[1]
-                x2_coordinate = all_nodes.get(j).getPos()[0]
-                y2_coordinate = all_nodes.get(j).getPos()[1]
-                plt.arrow(x1_coordinate, y1_coordinate, (x2_coordinate - x1_coordinate),
-                          (y2_coordinate - y1_coordinate), length_includes_head=True, width=0.000010,
-                          head_width=0.00006, color='black')
-        plt.title("Ex3")
-        plt.xlabel("X axis")
-        plt.ylabel("Y axis")
-        plt.show()
