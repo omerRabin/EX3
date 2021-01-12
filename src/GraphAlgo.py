@@ -1,4 +1,5 @@
 import json
+import math
 from typing import List
 
 from DiGraph_Encoder import DiGraph_Encoder
@@ -49,8 +50,74 @@ class GraphAlgo(GraphAlgoInterface):
             print(e)
             return False
 
-    """""
+    def dfs_help(self, id1: int, g: DiGraph) -> list:
+        """
+        this method get an id of node and return the SCC of this node in the graph use dfs algorithm
+        """
+        srcNode = g.get_node(id1)
+        visited = [srcNode]
+        stack = [srcNode]  # temp list of nodes
+        while stack:
+            node = stack[-1]  # the last node in the stack
+            if node not in visited:
+                visited.append(node)
+            remove_from_stack = True
+            if g.getNi(node.node_id) is not None:
+                for n in g.getNi(node.node_id).keys():
+                    n_in = g.get_node(n)
+                    if n_in not in visited:
+                        stack.append(n_in)
+                        remove_from_stack = False
+                        break
+            if remove_from_stack:
+                stack.pop()
+        return visited
 
+    def invert_graph(self) -> DiGraph:
+        """
+        this method reverse the edges in the graph and return a reverse graph
+        """
+        g_reverse = DiGraph()
+        for i in self.graph.graph:  # loop for adding the nodes
+            g_reverse.add_node(i)
+        for j in self.graph.graph:  # loop for adding the edges
+            edges = self.graph.all_out_edges_of_node(j)
+            for k in edges:
+                g_reverse.add_edge(k, j, edges.get(k))  # k is the des of the current edge and j is the src
+        return g_reverse
+
+    def init_nodes(self):
+        """
+        this method initialize the node fields that are needed to algo methods: tag and info
+        """
+        g = self.graph.graph
+        for i in g:
+            g.get(i).tag = math.inf  # initialize tag to infinity for shortest path
+            g.get(i).info = ""  # initialize to "" for dfs
+
+    def connected_component(self, id1: int):
+        """""
+        this method return the strongly connected component(SCC) that node id1 is a part of using tarjan algorithm
+        we got help from: https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/
+        """""
+        path = []  # the list contains the SCC of the node
+        if self.graph is None or id1 not in self.graph.get_all_v().keys():  # the case the graph is none or the node not
+            # exist in the graph
+            return path
+        p_regular = self.dfs_help(id1, self.graph)
+        g_rev = self.invert_graph()
+        p_reverse = self.dfs_help(id1, g_rev)
+        if len(p_regular) >= len(p_reverse):
+            for i in p_regular:
+                if p_regular[i] in p_reverse:
+                    path.append(p_regular[i])
+        else:
+            for j in p_reverse:
+                if p_reverse[j] in p_regular:
+                    path.append(p_reverse[j])
+
+        return path
+    """
      def shortest_path(self, id1: int, id2: int) -> (float, list):
          if id1 not in self.get_graph() or id2 not in self.get_graph():
              return (math.inf,[])
