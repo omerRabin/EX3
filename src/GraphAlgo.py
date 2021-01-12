@@ -120,16 +120,20 @@ class GraphAlgo(GraphAlgoInterface):
             p_reverse_keys.append(z.node_id)
             # check which list is bigger
         if len(p_regular) >= len(p_reverse):
-            for _ in p_regular_keys:
+            for _ in range(len(p_regular_keys)):
                 isIn = p_regular_keys[-len(p_regular_keys)] in p_reverse_keys  # check if the other list contain the key
                 if isIn:
                     path.append(self.graph.get_node(p_regular_keys[-len(p_regular_keys)]))  # if contains, add the node
+                else:
+                    self.graph.graph.get(p_regular_keys[-len(p_regular_keys)]).info = ""
                 p_regular_keys.pop(-len(p_regular_keys))  # remove for continue loop
         else:  # the other case- the other list is bigger
-            for _ in p_reverse_keys:
+            for _ in range(len(p_reverse_keys)):
                 isIn = p_reverse_keys[-len(p_reverse_keys)] in p_regular_keys
                 if isIn:
                     path.append(self.graph.get_node(p_reverse_keys[-len(p_reverse_keys)]))
+                if isIn is False:
+                    self.graph.graph.get(p_reverse_keys[-len(p_reverse_keys)]).info = ""
                 p_reverse_keys.pop(-len(p_reverse_keys))
 
         return path
@@ -137,10 +141,16 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_components(self):
         if self.graph is None:
             return [[]]
+        self.init_nodes()
+        lWereVisited = []  # remember all the nodes that was go into a SCC because dfs initialize the info...
         paths = []
         for node in self.graph.graph.values():
-            if node.info is "":  # skip the nodes that already visited
+            if node not in lWereVisited:  # skip the nodes that already visited
                 paths.append(self.connected_component(node.node_id))  # add the new SCC to the list
+                l = self.connected_component(node.node_id)
+                for n in l:  # insert the visited nodes to the listVisited
+                    lWereVisited.append(n)
+
         return paths
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
@@ -217,7 +227,3 @@ def plot_graph(self):
     plt.xlabel("X axis")
     plt.ylabel("Y axis")
     plt.show()
-
-
-
-
