@@ -107,16 +107,32 @@ class GraphAlgo(GraphAlgoInterface):
         p_regular = self.dfs_help(id1, self.graph)
         g_rev = self.invert_graph()
         p_reverse = self.dfs_help(id1, g_rev)
+        p_regular_keys = []  # for check contains
+        p_reverse_keys = []  # for check contains
+        # loops for insert the keys
+        for w in p_regular:
+            p_regular_keys.append(w.node_id)
+        for z in p_reverse:
+            p_reverse_keys.append(z.node_id)
+            # check which list is bigger
         if len(p_regular) >= len(p_reverse):
-            for i in p_regular:
-                if p_regular[i] in p_reverse:
-                    path.append(p_regular[i])
-        else:
-            for j in p_reverse:
-                if p_reverse[j] in p_regular:
-                    path.append(p_reverse[j])
+            for _ in p_regular_keys:
+                isIn = p_regular_keys[-len(p_regular_keys)] in p_reverse_keys  # check if the other list contain the key
+                if isIn:
+                    path.append(self.graph.get_node(p_regular_keys[-len(p_regular_keys)]))  # if contains, add the node
+                p_regular_keys.pop(-len(p_regular_keys))  # remove for continue loop
+        else:  # the other case- the other list is bigger
+            for _ in p_reverse_keys:
+                isIn = p_reverse_keys[-len(p_reverse_keys)] in p_regular_keys
+                if isIn:
+                    path.append(self.graph.get_node(p_reverse_keys[-len(p_reverse_keys)]))
+                p_reverse_keys.pop(-len(p_reverse_keys))
 
         return path
+
+    def connected_components(self):
+
+
     """
      def shortest_path(self, id1: int, id2: int) -> (float, list):
          if id1 not in self.get_graph() or id2 not in self.get_graph():
@@ -150,17 +166,6 @@ class GraphAlgo(GraphAlgoInterface):
              path.insert(0, node.getId())
              str = node.info
          return dest.weight,path
-    """
-
-    """
-    def connected_component(self, id1: int):
-
-    def connected_components(self):
-    """
-    """
-    def connected_component(self, id1: int) -> list:
-
-    def connected_components(self) -> List[list]:
     """
 
     def updatePositions(self):
