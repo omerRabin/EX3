@@ -7,6 +7,7 @@ from GraphAlgoInterface import GraphAlgoInterface
 from DiGraph import DiGraph
 import random
 import matplotlib.pyplot as plt
+from queue import PriorityQueue
 from GraphInterface import GraphInterface
 
 
@@ -95,6 +96,12 @@ class GraphAlgo(GraphAlgoInterface):
             g.get(i).tag = math.inf  # initialize tag to infinity for shortest path
             g.get(i).info = ""  # initialize to "" for dfs
 
+    def init_all(self):
+        for node in self.graph.get_all_v().values():
+            node.weight = math.inf
+            node.tag = 0
+            node.info = ""
+
     def connected_component(self, id1: int):
         """""
         this method return the strongly connected component(SCC) that node id1 is a part of using tarjan algorithm
@@ -133,14 +140,13 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_components(self):
 
 
-    """
+
      def shortest_path(self, id1: int, id2: int) -> (float, list):
          if id1 not in self.get_graph() or id2 not in self.get_graph():
              return (math.inf,[])
          if id1 is id2:
-             return (0, [id1]) # bdika
-         #init all varibales in node
-         self.__init_all()
+             return (0, [id1])
+         self.init_all()
          q = PriorityQueue()
          node = self.graph.get_all_v()[id1]
          node.weight = 0
@@ -166,7 +172,7 @@ class GraphAlgo(GraphAlgoInterface):
              path.insert(0, node.getId())
              str = node.info
          return dest.weight,path
-    """
+
 
     def updatePositions(self):
         g = self.get_graph().graph
