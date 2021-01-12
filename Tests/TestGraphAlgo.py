@@ -11,7 +11,7 @@ class TestGraphAlgo(unittest.TestCase):
 
     def test_loadFromJson(self):
         ga = init()
-        self.assertEqual(ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/G_10_80_1.json"), True)
+        self.assertEqual(ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/data/G_10_80_1.json"), True)
         self.assertEqual(ga.load_from_json("blabla"), False)
         ga1 = init()
         for i in range(4):
@@ -22,12 +22,12 @@ class TestGraphAlgo(unittest.TestCase):
         ga1.graph.add_edge(1, 3, 1.8)
         ga1.graph.add_edge(2, 3, 1)
         ga2 = GraphAlgo()
-        ga2.load_from_json('../DATA/T0.json_saved')
+        ga2.load_from_json('../data/T0.json_saved')
         self.assertEqual(ga1.graph, ga2.graph)  # check if the graphs is equals according to equals method
 
     def test_SaveToJson(self):
         ga = init()
-        ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/G_10_80_1.json")
+        ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/data/G_10_80_1.json")
         self.assertEqual(ga.save_to_json("save_test.json"), True)
 
     def test_shortest_path(self):
@@ -102,7 +102,7 @@ class TestGraphAlgo(unittest.TestCase):
 
     def test_plot_graph(self):
         ga = init()
-        ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/DATA/A5")
+        ga.load_from_json("C:/Users/omer rabin/PycharmProjects/EX3/data/A5")
         ga.plot_graph()
 
 
