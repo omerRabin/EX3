@@ -139,8 +139,8 @@ class GraphAlgo(GraphAlgoInterface):
             return [[]]
         paths = []
         for node in self.graph.graph.values():
-            if node.info is "visited":
-                paths.append(self.connected_component(node.node_id))
+            if node.info is "":  # skip the nodes that already visited
+                paths.append(self.connected_component(node.node_id))  # add the new SCC to the list
         return paths
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
