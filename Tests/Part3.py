@@ -54,6 +54,26 @@ class MyTestCase(unittest.TestCase):#omer, u need to change that to C:/Users/ome
         # print("time_nx in shortest path:", time_nx, "\n")
         return time_nx
 
+    def our_connected_components(file_path: str) -> float:
+        algo = GraphAlgo()
+        algo.load_from_json(file_path)
+        start_time = time.perf_counter()
+        ccs = algo.connected_components()
+        end_time = time.perf_counter()
+        # print("all scc in g:", ccs, "\n")
+        myCodeTime = end_time - start_time
+        return myCodeTime
+
+    def nx_SCCs(file_path: str) -> float:
+        g = GraphAlgo(None)
+        g.load_from_json(file_path)
+        start_time_nx = time.perf_counter()
+        ccs_nx = list(nx.strongly_connected_components(g))
+        end_time_nx = time.perf_counter()
+        time_nx = end_time_nx - start_time_nx
+        # print("all scc in g:", ccs_nx, "\n")
+        return time_nx
+
 
 if __name__ == '__main__':
     unittest.main()
