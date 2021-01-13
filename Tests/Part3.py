@@ -8,7 +8,7 @@ from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
 import networkx as nx
 
-class MyTestCase(unittest.TestCase):#omer, u need to change that to C:/Users/omer rabin/PycharmProjects/Ex3/data/...
+class MyTestCase(unittest.TestCase):#omer, u need to change that to C:/Users/omer rabin/PycharmProjects/Ex3/data/... and mine is "C:/Users/digorker/PycharmProjects/Ex3/data/
     graph1 = "C:/Users/digorker/PycharmProjects/Ex3/data/G_10_80_1.json"
     graph2 = "C:/Users/digorker/PycharmProjects/Ex3/data/G_100_800_1.json"
     graph3 = "C:/Users/digorker/PycharmProjects/Ex3/data/G_1000_8000_1.json"
