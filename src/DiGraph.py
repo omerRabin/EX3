@@ -103,7 +103,6 @@ class DiGraph(GraphInterface):
                 self.getNi(current.node_id).pop(node_id)  # remove the removal node from the neighbor dict of current
                 current.edges.pop(node_id)  # remove the removal node from the edges dict of current
                 self.sizeEdges += -1
-                self.mc += 1
         self.sizeNodes -= 1
         self.mc += 1
         self.graph.pop(node_id)  # remove the removal node from the Graph
