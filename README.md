@@ -20,11 +20,11 @@ The main classes is: DiGraph, GraphAlgo.\
 |add_node|O(1) | Adds a node to the graph. |
 |remove_node|O(n) |Removes a node from the graph. |
 |remove_edge|O(1) |Removes an edge from the graph. |
-# GraphAlgo:\
+# GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:\
-# DFS\
+# DFS
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.\
-# Dijkstra:\
+# Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph 
 
 
