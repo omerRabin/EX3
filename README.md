@@ -6,8 +6,8 @@ the algorithm class of our preivious Project in Java. \
 The main algorithm we used in this project is DFS. we used Dijkstra to find the shortest path from two nodes in the graph.\
 In addition, we used DFS to find a SCC of node and all the SCC's in the graph. SCC is the strongest connected component. \
 Our project consists of several classes that create the graphic system:\
-The main classes is: DiGraph, GraphAlgo.\
-# DiGraph:\
+The main classes is: DiGraph, GraphAlgo.
+# DiGraph:
 |Method|Complexity|Description|
 |----|------|---------|
 |v_size|O(1) | Returns the number of vertices in this graph |
@@ -21,7 +21,7 @@ The main classes is: DiGraph, GraphAlgo.\
 |remove_node|O(n) |Removes a node from the graph. |
 |remove_edge|O(1) |Removes an edge from the graph. |
 # GraphAlgo:
-In Graph algo we used two main algorithms- DFS and Dijkstra:\
+In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.\
 # Dijkstra:
