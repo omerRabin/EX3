@@ -24,8 +24,8 @@ The main classes is: DiGraph, GraphAlgo.
 # GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif=250x250)
-![DFS](https://user-images.githubusercontent.com/61798552/104638458-dc954380-56ae-11eb-95bb-3aa651d43ea6.jpg)
+![Alt Text](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.geeksforgeeks.org%2Fdepth-first-search-or-dfs-for-a-graph%2F&psig=AOvVaw2NznQjOsnzgN8rxCdXMAdv&ust=1610737925695000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJi1wsOQnO4CFQAAAAAdAAAAABAD.gif)
+
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 # Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph\
@@ -46,8 +46,8 @@ When planning a route, it is actually not necessary to wait until the destinatio
 |get_graph|O(1) | return: the directed graph on which the algorithm works on. |
 |load_from_json|O(1) |Loads a graph from a json file. |
 |save_to_json|O(1) | Saves the graph in JSON format to a file |
-|shortest_path|O(1) |Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm |
-|connected_component|O(k) |Finds the Strongly Connected Component(SCC) that node id1 is a part of. |
-|connected_components|O(1) |Finds all the Strongly Connected Component(SCC) in the graph. | 
+|shortest_path|O(n^2) |Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm |
+|connected_component|O(n^3) |Finds the Strongly Connected Component(SCC) that node id1 is a part of. |
+|connected_components|O(n^4) |Finds all the Strongly Connected Component(SCC) in the graph. | 
 |plot_graph|O(n^2) |Plots the graph. |
-
+In this class we wrote functions that support loading graph from Json, save graph to json, get SCC and SCC's, find shortest path and we have the option to plot a graph.
