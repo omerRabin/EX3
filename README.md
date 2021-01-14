@@ -1,4 +1,4 @@
-# EX3
+# Hello to our directed weighted graph Project in Python
 ![graph](https://user-images.githubusercontent.com/61798552/104636667-61cb2900-56ac-11eb-8800-cb578bb578c9.png)
 Hello, you have arrived at Eldad and Omar's project on the subject of weighted directed graphs written in Python.\
 In our project we built software that produces deliberate weighted graphs and allows you to make changes to them and even various algorithms.\
@@ -24,7 +24,6 @@ The main classes is: DiGraph, GraphAlgo.
 # GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
-![](DFSgif.gif)
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 # Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph\
