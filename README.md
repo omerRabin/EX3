@@ -24,8 +24,7 @@ The main classes is: DiGraph, GraphAlgo.
 # GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-![DFS](https://user-images.githubusercontent.com/61798552/104638458-dc954380-56ae-11eb-95bb-3aa651d43ea6.jpg=250x250)
+![DFS](https://user-images.githubusercontent.com/61798552/104638458-dc954380-56ae-11eb-95bb-3aa651d43ea6.jpg)
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 # Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph\
@@ -51,3 +50,4 @@ When planning a route, it is actually not necessary to wait until the destinatio
 |connected_components|O(1) |Finds all the Strongly Connected Component(SCC) in the graph. | 
 |plot_graph|O(n^2) |Plots the graph. |
 
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
