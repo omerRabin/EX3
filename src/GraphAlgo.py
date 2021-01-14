@@ -2,6 +2,7 @@ import json
 import math
 from typing import List
 
+
 from DiGraph_Encoder import DiGraph_Encoder
 from GraphAlgoInterface import GraphAlgoInterface
 from DiGraph import DiGraph
@@ -9,7 +10,7 @@ import random
 import matplotlib.pyplot as plt
 from queue import PriorityQueue
 from GraphInterface import GraphInterface
-#test
+
 
 class GraphAlgo(GraphAlgoInterface):
 
@@ -102,7 +103,6 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_component(self, id1: int):
         """""
         this method return the strongly connected component(SCC) that node id1 is a part of using dfs algorithm
-
         """""
         path = []  # the list contains the SCC of the node
         if self.graph is None or id1 not in self.graph.get_all_v().keys():  # the case the graph is none or the node not
@@ -190,7 +190,6 @@ class GraphAlgo(GraphAlgoInterface):
         for i in g:
             if g.get(i).pos is None:
                 g.get(i).pos = (random.uniform(-1, 1), random.uniform(-1, 1), 0)
-
 
     def plot_graph(self):
         self.updatePositions()
