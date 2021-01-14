@@ -126,108 +126,75 @@ class MyTestCase(unittest.TestCase):
         print("our time for shortest_path:", oSPTime)
         print("networkx time for shortest_path:", nxSPTime)
 
+    def test__G_100_800_1(self):
+        file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_100_800_1.json"
+        print("Graph 2:")
+        oCCsTime = our_connected_components(file_path)
+        oCCTime = our_CC(file_path, 1)
+        oSPTime = OurShortestPath(file_path, 0, 5)
+        nxCCsTime = nx_CCs(file_path)
+        nxSPTime = nx_shortest_path(file_path, 0, 5)
+        print("our time for SCCs:", oCCsTime)
+        print("networkx time for SCCs:", nxCCsTime)
+        print("our time for one SCC:", oCCTime)
+        print("our time for shortest_path:", oSPTime)
+        print("networkx time for shortest_path:", nxSPTime)
 
-def test__G_100_800_1(self):
-    file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_100_800_1.json"
-    print("Graph 2:")
-    oCCsTime = our_connected_components(file_path)
-    oCCTime = our_CC(file_path, 1)
-    oSPTime = OurShortestPath(file_path, 0, 5)
-    nxCCsTime = nx_CCs(file_path)
-    nxSPTime = nx_shortest_path(file_path, 0, 5)
-    print("our time for SCCs:", oCCsTime)
-    print("networkx time for SCCs:", nxCCsTime)
-    print("our time for one SCC:", oCCTime)
-    print("our time for shortest_path:", oSPTime)
-    print("networkx time for shortest_path:", nxSPTime)
+    def test__G_1000_8000_1(self):
+        file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_1000_8000_1.json"
+        print("Graph 3:")
+        oCCsTime = our_connected_components(file_path)
+        oCCTime = our_CC(file_path, 1)
+        oSPTime = OurShortestPath(file_path, 0, 5)
+        nxCCsTime = nx_CCs(file_path)
+        nxSPTime = nx_shortest_path(file_path, 0, 5)
+        print("our time for SCCs:", oCCsTime)
+        print("networkx time for SCCs:", nxCCsTime)
+        print("our time for one SCC:", oCCTime)
+        print("our time for shortest_path:", oSPTime)
+        print("networkx time for shortest_path:", nxSPTime)
 
+    def test__G_10000_80000_1(self):
+        file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_10000_80000_1.json"
+        print("Graph 4:")
+        oCCsTime = our_connected_components(file_path)
+        oCCTime = our_CC(file_path, 1)
+        oSPTime = OurShortestPath(file_path, 0, 5)
+        nxCCsTime = nx_CCs(file_path)
+        nxSPTime = nx_shortest_path(file_path, 0, 5)
+        print("our time for SCCs:", oCCsTime)
+        print("networkx time for SCCs:", nxCCsTime)
+        print("our time for one SCC:", oCCTime)
+        print("our time for shortest_path:", oSPTime)
+        print("networkx time for shortest_path:", nxSPTime)
 
-def test__G_1000_8000_1(self):
-    file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_1000_8000_1.json"
-    print("Graph 3:")
-    oCCsTime = our_connected_components(file_path)
-    oCCTime = our_CC(file_path, 1)
-    oSPTime = OurShortestPath(file_path, 0, 5)
-    nxCCsTime = nx_CCs(file_path)
-    nxSPTime = nx_shortest_path(file_path, 0, 5)
-    print("our time for SCCs:", oCCsTime)
-    print("networkx time for SCCs:", nxCCsTime)
-    print("our time for one SCC:", oCCTime)
-    print("our time for shortest_path:", oSPTime)
-    print("networkx time for shortest_path:", nxSPTime)
+    def test__G_20000_160000_1(self):
+        file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_20000_160000_1.json"
+        print("Graph 5:")
+        oCCsTime = our_connected_components(file_path)
+        oCCTime = our_CC(file_path, 1)
+        oSPTime = OurShortestPath(file_path, 0, 5)
+        nxCCsTime = nx_CCs(file_path)
+        nxSPTime = nx_shortest_path(file_path, 0, 5)
+        print("our time for SCCs:", oCCsTime)
+        print("networkx time for SCCs:", nxCCsTime)
+        print("our time for one SCC:", oCCTime)
+        print("our time for shortest_path:", oSPTime)
+        print("networkx time for shortest_path:", nxSPTime)
 
-
-def test__G_10000_80000_1(self):
-    file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_10000_80000_1.json"
-    print("Graph 4:")
-    oCCsTime = our_connected_components(file_path)
-    oCCTime = our_CC(file_path, 1)
-    oSPTime = OurShortestPath(file_path, 0, 5)
-    nxCCsTime = nx_CCs(file_path)
-    nxSPTime = nx_shortest_path(file_path, 0, 5)
-    print("our time for SCCs:", oCCsTime)
-    print("networkx time for SCCs:", nxCCsTime)
-    print("our time for one SCC:", oCCTime)
-    print("our time for shortest_path:", oSPTime)
-    print("networkx time for shortest_path:", nxSPTime)
-    n_groups = 2
-    means_our = (oCCsTime, oSPTime)
-    means_nx = (nxCCsTime, nxSPTime)
-    data = [[oCCsTime, oSPTime],
-            [nxCCsTime, nxSPTime]]
-    labels = ['CCsTime', 'SPTime']
-    fig, ax = plt.subplots()
-    index = np.arange(n_groups)
-    bar_width = 0.35
-    opacity = 0.8
-
-    rects1 = plt.bar(index, means_our, bar_width,
-                     alpha=opacity,
-                     color='b',
-                     label='our')
-
-    rects2 = plt.bar(index + bar_width, means_nx, bar_width,
-                     alpha=opacity,
-                     color='g',
-                     label='networkx')
-
-    plt.ylabel('Time')
-    plt.title('Time comparison')
-    plt.xticks(index + bar_width, ('CCsTime', 'SPTime'))
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
-    plt.savefig("graph 4 time comparison")  # name
-
-
-def test__G_20000_160000_1(self):
-    file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_20000_160000_1.json"
-    print("Graph 5:")
-    oCCsTime = our_connected_components(file_path)
-    oCCTime = our_CC(file_path, 1)
-    oSPTime = OurShortestPath(file_path, 0, 5)
-    nxCCsTime = nx_CCs(file_path)
-    nxSPTime = nx_shortest_path(file_path, 0, 5)
-    print("our time for SCCs:", oCCsTime)
-    print("networkx time for SCCs:", nxCCsTime)
-    print("our time for one SCC:", oCCTime)
-    print("our time for shortest_path:", oSPTime)
-    print("networkx time for shortest_path:", nxSPTime)
-
-
-def test__G_30000_240000_1(self):
-    file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_30000_240000_1.json"
-    print("Graph 6:")
-    oCCsTime = our_connected_components(file_path)
-    oCCTime = our_CC(file_path, 1)
-    oSPTime = OurShortestPath(file_path, 0, 5)
-    nxCCsTime = nx_CCs(file_path)
-    nxSPTime = nx_shortest_path(file_path, 0, 5)
-    print("our time for SCCs:", oCCsTime)
-    print("networkx time for SCCs:", nxCCsTime)
-    print("our time for one SCC:", oCCTime)
-    print("our time for shortest_path:", oSPTime)
-    print("networkx time for shortest_path:", nxSPTime)
+    def test__G_30000_240000_1(self):
+        file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_30000_240000_1.json"
+        print("Graph 6:")
+        oCCsTime = our_connected_components(file_path)
+        oCCTime = our_CC(file_path, 1)
+        oSPTime = OurShortestPath(file_path, 0, 5)
+        nxCCsTime = nx_CCs(file_path)
+        nxSPTime = nx_shortest_path(file_path, 0, 5)
+        print("our time for SCCs:", oCCsTime)
+        print("networkx time for SCCs:", nxCCsTime)
+        print("our time for one SCC:", oCCTime)
+        print("our time for shortest_path:", oSPTime)
+        print("networkx time for shortest_path:", nxSPTime)
 
 
 if __name__ == '__main__':
