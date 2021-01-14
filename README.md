@@ -23,7 +23,7 @@ The main classes is: DiGraph, GraphAlgo.
 # GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
-Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.\
+Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 # Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph\
 # The Algorithm:
@@ -34,8 +34,17 @@ For the current node, consider all of its unvisited neighbours and calculate the
 If B was previously marked with a distance greater than 8 then change it to 8. Otherwise, the current value will be kept.\
 When we are done considering all of the unvisited neighbours of the current node, mark the current node as visited and remove it from the unvisited set.\
 A visited node will never be checked again.\
-If the destination node has been marked visited (when planning a route between two specific nodes) or if the smallest tentative distance among the nodes in the unvisited set is\ infinity (when planning a complete traversal; occurs when there is no connection between the initial node and remaining unvisited nodes), then stop. The algorithm has finished.\
-Otherwise, select the unvisited node that is marked with the smallest tentative distance, set it as the new "current node", and go back to step 3.\
-When planning a route, it is actually not necessary to wait until the destination node is "visited" as above: the algorithm can stop once the destination node has the smallest\ tentative distance among all "unvisited" nodes (and thus could be selected as the next "current").\
+If the destination node has been marked visited (when planning a route between two specific nodes) or if the smallest tentative distance among the nodes in the unvisited set is infinity (when planning a complete traversal; occurs when there is no connection between the initial node and remaining unvisited nodes), then stop. The algorithm has finished.
+Otherwise, select the unvisited node that is marked with the smallest tentative distance, set it as the new "current node", and go back to step 3.
+When planning a route, it is actually not necessary to wait until the destination node is "visited" as above: the algorithm can stop once the destination node has the smallest tentative distance among all "unvisited" nodes (and thus could be selected as the next "current").
 
+|Method|Complexity|Description|
+|----|------|---------|
+|get_graph|O(1) | Returns the number of vertices in this graph |
+|load_from_json|O(1) |Returns the number of edges in this graph |
+|save_to_json|O(1) |return a dictionary of all the nodes in the Graph, each node is represented using a pair |
+|shortest_path|O(1) |return a dictionary of all the nodes connected to (into) node_id ,each node is represented using a pair (other_node_id, weight) |
+|connected_component|O(k) |return a dictionary of all the nodes connected from node_id , each node is represented using a pair(other_node_id, weight) |
+|connected_components|O(1) |Returns the current version of this graph,on every change in the graph state - the MC should be increased | 
+|plot_graph|O(1) |Adds an edge to the graph. |
 
