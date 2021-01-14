@@ -3,6 +3,7 @@ import time
 import unittest
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
@@ -139,6 +140,15 @@ class MyTestCase(unittest.TestCase):
         print("our time for one SCC:", oCCTime)
         print("our time for shortest_path:", oSPTime)
         print("networkx time for shortest_path:", nxSPTime)
+        data = [[oCCsTime, oSPTime],
+                [nxCCsTime, nxSPTime]]
+        labels = ['G1', 'G2', 'G3', 'G4', 'G5']
+        X = np.arange(3)
+        fig = plt.figure()
+        ax = fig.add_axes([0, 0, 1, 1])
+        ax.bar(X + 0.00, data[0], color='b', width=0.25)
+        ax.bar(X + 0.25, data[1], color='r', width=0.25)
+        plt.show()
 
     def test__G_20000_160000_1(self):
         file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_20000_160000_1.json"
