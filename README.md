@@ -1,4 +1,5 @@
 # EX3
+![graph](https://user-images.githubusercontent.com/61798552/104636667-61cb2900-56ac-11eb-8800-cb578bb578c9.png)
 Hello, you have arrived at Eldad and Omar's project on the subject of weighted directed graphs written in Python.\
 In our project we built software that produces deliberate weighted graphs and allows you to make changes to them and even various algorithms.\
 In addition during the project we made comparisons between the runtimes of the functions in our algorithm class to the algorithm Class of the network-X to\
