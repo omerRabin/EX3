@@ -34,6 +34,23 @@ def printThePath(shortest: tuple) -> None:
     else:
         print("There is no path between the two")
 
+def load_from_json_by_networkx(self, file_name: str) -> DiGraph:#need to chage some things
+    g = nx.DiGraph()
+    try:
+        with open(file_name, "r") as f:
+            details = json.load(f)
+            nodes = details.get("Nodes")
+            edges_out = details.get("Edges")
+            for dic in nodes:
+                g.add_node(dic.get("id"))
+            for dic in edges_out:
+                g.add_weighted_edges_from([(dic.get("src"), dic.get("dest"), dic.get("w"))])
+            self.graph = g
+        return g
+    except Exception as e:
+        print(e)
+        return None
+
 def OurShortestPath(file_path: str, src: int, dest: int) -> float:
     algo = GraphAlgo(None)
     algo.load_from_json(file_path)
@@ -46,8 +63,9 @@ def OurShortestPath(file_path: str, src: int, dest: int) -> float:
     return myCodeTime
 
 def nx_shortest_path(file_path: str, src: int, dest: int) -> float:
-    g = GraphAlgo(None)
-    g.load_from_json(file_path)
+    #g = GraphAlgo(None)
+    #g.load_from_json(file_path)
+    g = load_from_json_by_networkx(MyTestCase, file_path)
     start_time_nx = time.perf_counter()
     nx.shortest_path(g, source=src, target=dest, weight='weight')
     end_time_nx = time.perf_counter()
@@ -66,8 +84,9 @@ def our_connected_components(file_path: str) -> float:
     return myCodeTime
 
 def nx_CCs(file_path: str) -> float:
-    g = GraphAlgo(None)
-    g.load_from_json(file_path)
+    #g = GraphAlgo(None)
+    #g.load_from_json(file_path)
+    g = load_from_json_by_networkx(MyTestCase, file_path)
     start_time_nx = time.perf_counter()
     ccs_nx = list(nx.strongly_connected_components(g))
     end_time_nx = time.perf_counter()
@@ -142,7 +161,8 @@ class MyTestCase(unittest.TestCase):
         print("networkx time for shortest_path:", nxSPTime)
         data = [[oCCsTime, oSPTime],
                 [nxCCsTime, nxSPTime]]
-        labels = ['G1', 'G2', 'G3', 'G4', 'G5']
+        labels = ['CCsTime', 'SPTime']
+        plt.set_xticklabels(labels)
         X = np.arange(3)
         fig = plt.figure()
         ax = fig.add_axes([0, 0, 1, 1])
