@@ -22,10 +22,10 @@ class TestDiGraph(unittest.TestCase):
         g.add_edge(0, 1, 3)
         g.add_edge(2, 1, 5)
         g.remove_node(1)
-        self.assertEqual(g.mc, 17)
+        self.assertEqual(g.mc, 15)
         g.add_edge(0, 1, 3)
         g.add_edge(0, 1, 3)
-        g.remove_edge(g.mc, 19)
+        g.remove_edge(g.mc, 17)
 
     def test_e_size(self):
         g = init()
