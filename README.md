@@ -24,8 +24,6 @@ The main classes is: DiGraph, GraphAlgo.
 # GraphAlgo:
 In Graph algo we used two main algorithms- DFS and Dijkstra:
 # DFS
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-
 Depth-first search  (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the\ root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 # Dijkstra:
 An algorithm for finding the shortest paths between nodes in a graph\
@@ -43,11 +41,11 @@ When planning a route, it is actually not necessary to wait until the destinatio
 
 |Method|Complexity|Description|
 |----|------|---------|
-|get_graph|O(1) | Returns the number of vertices in this graph |
-|load_from_json|O(1) |Returns the number of edges in this graph |
-|save_to_json|O(1) |return a dictionary of all the nodes in the Graph, each node is represented using a pair |
-|shortest_path|O(1) |return a dictionary of all the nodes connected to (into) node_id ,each node is represented using a pair (other_node_id, weight) |
-|connected_component|O(k) |return a dictionary of all the nodes connected from node_id , each node is represented using a pair(other_node_id, weight) |
-|connected_components|O(1) |Returns the current version of this graph,on every change in the graph state - the MC should be increased | 
-|plot_graph|O(1) |Adds an edge to the graph. |
+|get_graph|O(1) | return: the directed graph on which the algorithm works on. |
+|load_from_json|O(1) |Loads a graph from a json file. |
+|save_to_json|O(1) | Saves the graph in JSON format to a file |
+|shortest_path|O(1) |Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm |
+|connected_component|O(k) |Finds the Strongly Connected Component(SCC) that node id1 is a part of. |
+|connected_components|O(1) |Finds all the Strongly Connected Component(SCC) in the graph. | 
+|plot_graph|O(n^2) |Plots the graph. |
 
