@@ -48,6 +48,11 @@ When planning a route, it is actually not necessary to wait until the destinatio
 |shortest_path|O(1) |Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm |
 |connected_component|O(k) |Finds the Strongly Connected Component(SCC) that node id1 is a part of. |
 |connected_components|O(1) |Finds all the Strongly Connected Component(SCC) in the graph. | 
+|shortest_path|O(n^2) |Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm |
+|connected_component|O(n^3) |Finds the Strongly Connected Component(SCC) that node id1 is a part of. |
+|connected_components|O(n^4) |Finds all the Strongly Connected Component(SCC) in the graph. | 
 |plot_graph|O(n^2) |Plots the graph. |
+
+In this class we wrote functions that support loading graph from Json, save graph to json, get SCC and SCC's, find shortest path and we have the option to plot a graph.
 
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
