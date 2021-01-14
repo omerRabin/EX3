@@ -186,6 +186,7 @@ class MyTestCase(unittest.TestCase):
         plt.legend()
         plt.tight_layout()
         plt.show()
+        plt.savefig("graph 4 time comparison")
 
     def test__G_20000_160000_1(self):
         file_path = "C:/Users/digorker/PycharmProjects/Ex3/data/G_20000_160000_1.json"
