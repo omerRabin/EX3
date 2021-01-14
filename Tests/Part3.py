@@ -159,15 +159,32 @@ class MyTestCase(unittest.TestCase):
         print("our time for one SCC:", oCCTime)
         print("our time for shortest_path:", oSPTime)
         print("networkx time for shortest_path:", nxSPTime)
+        n_groups = 2
+        means_our = (oCCsTime, oSPTime)
+        means_nx = (nxCCsTime, nxSPTime)
         data = [[oCCsTime, oSPTime],
                 [nxCCsTime, nxSPTime]]
         labels = ['CCsTime', 'SPTime']
-        plt.set_xticklabels(labels)
-        X = np.arange(3)
-        fig = plt.figure()
-        ax = fig.add_axes([0, 0, 1, 1])
-        ax.bar(X + 0.00, data[0], color='b', width=0.25)
-        ax.bar(X + 0.25, data[1], color='r', width=0.25)
+        fig, ax = plt.subplots()
+        index = np.arange(n_groups)
+        bar_width = 0.35
+        opacity = 0.8
+
+        rects1 = plt.bar(index, means_our, bar_width,
+                         alpha=opacity,
+                         color='b',
+                         label='our')
+
+        rects2 = plt.bar(index + bar_width, means_nx, bar_width,
+                         alpha=opacity,
+                         color='g',
+                         label='networkx')
+
+        plt.ylabel('Time')
+        plt.title('Time comparison')
+        plt.xticks(index + bar_width, ('CCsTime', 'SPTime'))
+        plt.legend()
+        plt.tight_layout()
         plt.show()
 
     def test__G_20000_160000_1(self):
