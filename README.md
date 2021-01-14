@@ -1,5 +1,4 @@
 # EX3
-![graph](https://user-images.githubusercontent.com/61798552/104636667-61cb2900-56ac-11eb-8800-cb578bb578c9.png)
 Hello, you have arrived at Eldad and Omar's project on the subject of weighted directed graphs written in Python.\
 In our project we built software that produces deliberate weighted graphs and allows you to make changes to them and even various algorithms.\
 In addition during the project we made comparisons between the runtimes of the functions in our algorithm class to the algorithm Class of the network-X to\
@@ -30,7 +29,7 @@ An algorithm for finding the shortest paths between nodes in a graph\
 # The Algorithm:
 Let the node at which we are starting be called the initial node. Let the distance of node Y be the distance from the initial node to Y. Dijkstra's algorithm will assign some\ initial distance values and will try to improve them step by step.\
 Mark all nodes unvisited. Create a set of all the unvisited nodes called the unvisited set.\
-Assign to every node a tentative distance value: set it to zero for our initial node and to infinity for all other nodes. Set the initial node as current.[16]\
+Assign to every node a tentative distance value: set it to zero for our initial node and to infinity for all other nodes. Set the initial node as current.
 For the current node, consider all of its unvisited neighbours and calculate their tentative distances through the current node. Compare the newly calculated tentative distance\ to the current assigned value and assign the smaller one. For example, if the current node A is marked with a distance of 6, and the edge connecting it with a neighbour B has\ length 2, then the distance to B through A will be 6 + 2 = 8.\
 If B was previously marked with a distance greater than 8 then change it to 8. Otherwise, the current value will be kept.\
 When we are done considering all of the unvisited neighbours of the current node, mark the current node as visited and remove it from the unvisited set.\
